@@ -1,28 +1,35 @@
 #include "person.h"
 
 Person::Person(int cardNo, bool act, string fName, string lName) {
-    // complete constructor
+    cardID = cardNo;
+    active = act;
+    firstName= fName;
+    lastName = lName;
 }
 
 string Person::getFirstName() {
-    return ""; // complete
+    return firstName; // complete
 }
 
 string Person::getLastName() {
-    return ""; // complete
+    return lastName; // complete
 }
 
 int Person::getId() {
-    return 0; // complete
+    return cardID; // complete
 }
 
-void Person::setActive(bool act) {
+void Person::setActive(bool act)
+{
+  active = act;
 } // complete
 
-bool Person::isActive() {
+bool Person::isActive()
+{
     return true; // complete
 }
 
-string Person::fullName() {
-    return ""; // complete
+string Person::fullName()
+ {
+    return firstName+lastName; // complete
 }
