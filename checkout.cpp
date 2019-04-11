@@ -6,8 +6,8 @@
 #include <vector>
 #include "person.cpp"
 #include "book.cpp"
-
 using namespace std;
+
 
 void printMenu() {
     cout << "----------Library Book Rental System----------" << endl;
@@ -22,37 +22,92 @@ void printMenu() {
     cout << "Please enter a choice: ";
 }
 
-/* You are not obligated to use these function declarations - they're just given as examples
-void readBooks(vector<Book *> & myBooks) {
-    return;
+
+
+void BookCheckout(vector<Book *> & book, vector<Person *> & card)
+{
+  int cardid;
+  int bookid;
+  bool cardids = false;
+  bool bookids = false;
+  cout << "What is your ID: ";
+  cin >> cardid;
+  for (int i = 0; i < card.size(); i++)
+  {
+    if (cardid == card.at(i)->getId())
+    {
+      cardids = true;
+      cout << "What is your bookid: ";
+      cin >> bookid;
+      for (int i = 0; i < book.size(); i++)
+      {
+        if (bookid == book.at(i)->getId())
+        {
+          bookids = true;
+        }
+      }
+    }
+  }
 }
 
-int readPersons(vector<Person *> & myCardholders) {
-    return 0;
+void readBooks(vector<Book *> & myBooks)
+{
+  ifstream in;
+  in.open("books.txt");
+  int id;
+  string title;
+  string author;
+  string type;
+  string garbage;
+  while(in>>id)
+  {
+    getline(in,garbage);
+    getline(in,title);
+    getline(in,author);
+    getline(in,type);
+    myBooks.push_back(new Book(id,title,author,type));
+  }
 }
 
-void readRentals(vector<Book *> & myBooks, vector<Person *> myCardholders) {
-    return;
+int readPersons(vector<Person *> & myCardholders)
+{
+  ifstream in;
+  in.open("persons.txt");
+  int id;
+  bool checkout;
+  string firstname;
+  string lastname;
+  string name;
+  while (in>>id>>checkout>>firstname>>lastname)
+  {
+    myCardholders.push_back(new Person(id,checkout,firstname,lastname));
+  }
 }
 
-void openCard(vector<Person *> & myCardholders, int nextID) {
-    return;
+void readRentals(vector<Book *> & myBooks, vector<Person *> myCardholders)
+{
+  
 }
 
-Book * searchBook(vector<Book *> myBooks, int id) {
+void openCard(vector<Person *> & myCardholders, int nextID)
+{
+
+}
+
+Book * searchBook(vector<Book *> myBooks, int id)
+{
     return nullptr;
 }
-*/
 
 int main()
 {
     vector<Book *> books;
     vector<Person *> cardholders;
-    
+
     int choice;
     do
     {
-        // If you use cin anywhere, don't forget that you have to handle the <ENTER> key that 
+        // If you use cin anywhere, don't forget that you have to handle the <ENTER> key that
         // the user pressed when entering a menu option. This is still in the input stream.
         printMenu();
         cin >> choice;
@@ -85,7 +140,7 @@ int main()
             case 7:
                 // Close library card
                 break;
-                
+
             case 8:
                 // Must update records in files here before exiting the program
                 break;
