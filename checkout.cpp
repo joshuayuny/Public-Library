@@ -51,7 +51,7 @@ void BookCheckout(vector<Book *> & book, vector<Person *> & card)
   }
 }
 
-void BookReturn(vector<Book *> &book)
+void BookReturn(vector<Book *> & book)
 {
   int bookid;
   cout << "Please enter the book ID to return: ";
@@ -67,13 +67,42 @@ void BookReturn(vector<Book *> &book)
 
 void allBooks(vector<Book *> &book)
 {
-
+  for (int i = 0; i < book.size(); i++)
+  {
+    if (book.at(i)->getPersonPtr()==nullptr)
+    {
+      cout << book.at(i)->getId();
+      cout << endl;
+      cout << book.at(i)->getTitle();
+      cout << endl;
+      cout << book.at(i)->getAuthor();
+      cout << endl;
+      cout << book.at(i)->getCategory();
+      cout << endl;
+    }
+  }
+  cout << "No available books";
 }
 
-void allRentals()
+void allRentals(vector<Book *> &book)
 {
-
+  for (int i = 0; i < book.size(); i++)
+  {
+    if (book.at(i)->getPersonPtr()!=nullptr)
+    {
+      cout << book.at(i)->getId();
+      cout << endl;
+      cout << book.at(i)->getTitle();
+      cout << endl;
+      cout << book.at(i)->getAuthor();
+      cout << endl;
+      cout << book.at(i)->getCategory();
+      cout << endl;
+    }
+  }
+  cout << "No outstanding rentals";
 }
+
 void rentalCarholders()
 {
 
@@ -132,8 +161,7 @@ void readRentals(vector<Book *> & myBooks, vector<Person *> myCardholders)
         {
           if (personid == myCardholders.at(x)->getId())
           {
-            //myBooks.at(i)->getId() = setPersonPtr(*myCardholders.at(i));
-            myBooks[i]->setPersonPtr(myCardholders.at(x));
+            myBooks.at(i)->setPersonPtr(myCardholders.at(x));
           }
         }
       }
@@ -155,7 +183,6 @@ int main()
 {
     vector<Book *> books;
     vector<Person *> cardholders;
-
     int choice;
     do
     {
@@ -167,18 +194,22 @@ int main()
         {
             case 1:
                 // Book checkout
+                BookCheckout(books,cardholders);
                 break;
 
             case 2:
                 // Book return
+                BookReturn(books);
                 break;
 
             case 3:
                 // View all available books
+                allBooks(books);
                 break;
 
             case 4:
                 // View all outstanding rentals
+                allRentals(books);
                 break;
 
             case 5:
