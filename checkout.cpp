@@ -44,6 +44,7 @@ void BookCheckout(vector<Book *> & book, vector<Person *> & card)
         if (bookid == book.at(i)->getId())
         {
           bookids = true;
+          book.at(i)->setPersonPtr(card.at(i));
         }
       }
     }
@@ -59,7 +60,7 @@ void BookReturn(vector<Book *> &book)
   {
     if (book.at(i)->getId() == bookid)
     {
-
+      personPtr = nullptr;
     }
   }
 }
@@ -125,13 +126,13 @@ void readRentals(vector<Book *> & myBooks, vector<Person *> myCardholders)
   {
     for (int i = 0; i < myBooks.size(); i++)
     {
-      if (bookid == myBooks.at(i).getId())
+      if (bookid == myBooks.at(i)->getId())
       {
         for (int x = 0; x < myCardholders.size(); x++)
         {
-          if (personid == *myCardholders.at(i).getId())
+          if (personid == *myCardholders.at(i)->getId())
           {
-            myBooks.at(i).getId() = setPersonPtr(*myCardholders.at(i));
+            myBooks.at(i)->getId() = setPersonPtr(*myCardholders.at(i));
           }
         }
       }
