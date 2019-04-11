@@ -60,12 +60,12 @@ void BookReturn(vector<Book *> &book)
   {
     if (book.at(i)->getId() == bookid)
     {
-      personPtr = nullptr;
+      book.at(i)->setPersonPtr(nullptr);
     }
   }
 }
 
-void allBooks()
+void allBooks(vector<Book *> &book)
 {
 
 }
@@ -130,9 +130,10 @@ void readRentals(vector<Book *> & myBooks, vector<Person *> myCardholders)
       {
         for (int x = 0; x < myCardholders.size(); x++)
         {
-          if (personid == *myCardholders.at(i)->getId())
+          if (personid == myCardholders.at(x)->getId())
           {
-            myBooks.at(i)->getId() = setPersonPtr(*myCardholders.at(i));
+            //myBooks.at(i)->getId() = setPersonPtr(*myCardholders.at(i));
+            myBooks[i]->setPersonPtr(myCardholders.at(x));
           }
         }
       }
