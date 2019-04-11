@@ -50,6 +50,38 @@ void BookCheckout(vector<Book *> & book, vector<Person *> & card)
   }
 }
 
+void BookReturn(vector<Book *> &book)
+{
+  int bookid;
+  cout << "Please enter the book ID to return: ";
+  cin>> bookid;
+  for (int i = 0; i < book.size(); i++)
+  {
+    if (book.at(i)->getId() == bookid)
+    {
+
+    }
+  }
+}
+
+void allBooks()
+{
+
+}
+
+void allRentals()
+{
+
+}
+void rentalCarholders()
+{
+
+}
+void closeCard()
+{
+
+}
+
 void readBooks(vector<Book *> & myBooks)
 {
   ifstream in;
@@ -86,7 +118,25 @@ int readPersons(vector<Person *> & myCardholders)
 
 void readRentals(vector<Book *> & myBooks, vector<Person *> myCardholders)
 {
-  
+  ifstream in;
+  in.open("rentals.txt");
+  int bookid, personid;
+  while (in>>bookid>>personid)
+  {
+    for (int i = 0; i < myBooks.size(); i++)
+    {
+      if (bookid == myBooks.at(i).getId())
+      {
+        for (int x = 0; x < myCardholders.size(); x++)
+        {
+          if (personid == *myCardholders.at(i).getId())
+          {
+            myBooks.at(i).getId() = setPersonPtr(*myCardholders.at(i));
+          }
+        }
+      }
+    }
+  }
 }
 
 void openCard(vector<Person *> & myCardholders, int nextID)
