@@ -26,10 +26,17 @@ void Person::setActive(bool act)
 
 bool Person::isActive()
 {
-    return true; // complete
+  if(active == true)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }
 
 string Person::fullName()
  {
-    return firstName+lastName; // complete
+    return firstName + " " + lastName; // complete
 }
